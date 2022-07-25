@@ -19,6 +19,7 @@
       --portfolio-item: 3;
       --outline: ;
       --outline-offset: ;
+      --anim-fast: 250ms cubic-bezier(0.4, 0, 0.2, 1);
       /*      --outline: 2px solid red;
       --outline-offset: -2px;*/
 }
@@ -26,6 +27,9 @@ body {
     font-family: var(--main-font);
     font-style: normal;
     color: var(--main-txt-cl);
+}
+.no-scroll {
+    overflow: hidden;
 }
     /*reset styles*/
 h1, 
@@ -75,6 +79,10 @@ p {
     border-radius: 4px;
 
     padding: 6px 22px;
+    
+    transition: background-color var(--anim-fast), color var(--anim-fast), box-shadow var(--anim-fast);
+
+
 }
 .button:hover,
 .button:focus {
@@ -129,6 +137,8 @@ p {
     font-size: 14px;
     line-height: calc(16/14);
     letter-spacing: 0.02em;
+
+    transition: color var(--anim-fast);
 }
 
 .header-link-current {
@@ -146,6 +156,8 @@ p {
     position: absolute;
     bottom: 0;
     left: 0;
+
+    
 }
 .header-link:hover, .header-link:focus {color: 
         var(--accent-txt-cl);
@@ -161,6 +173,8 @@ p {
         gap: 10px;
         padding-top: 32px;
         padding-bottom: 32px;
+
+        transition: color var(--anim-fast);
       
 }
 .header-mail:hover,
@@ -240,12 +254,18 @@ font-weight: 900;
     min-width: 200px;
     min-height: 50px;
     padding: 10px 32px;
+    
+
+    
+
+    transition: background-color var(--anim-fast);
 
 }
 
 .hero-button:hover,
 .hero-button:focus {
     background-color: var(--accent-txt-cl);
+    
 }
 
 /*Specialty section*/
@@ -328,9 +348,34 @@ font-weight: 900;
     gap: var(--main-gap);
     
   }
+  .work-card {
+    position: relative;
+  }
   img {display: block;}
   .team-card {
     background-color: #F5F4FA;
+  }
+  .work-overlay {
+    position: absolute;
+        width: 370px;
+        height: 70px;
+        bottom: 0;
+        z-index: 100;
+
+
+        background: rgba(47, 48, 58, 0.8);
+  }
+  .work-overlay-text {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: calc(16/14);
+        text-align: center;
+        letter-spacing: 0.03em;    
+        color: var(--hero-txt-cl);
+        padding-top: 27px;
+        padding-bottom: 27px;
+        text-transform: uppercase;
+    
   }
   .team-card-list
    {display: flex;
@@ -381,13 +426,72 @@ margin-bottom: 16px;
 .gallery-list {display: flex;
     flex-wrap: wrap;
     gap: var(--main-gap);
+ 
     }
-.gallery-list-item {flex-basis: calc((100% - var(--main-gap) * (var(--portfolio-item) - 1)) / var(--portfolio-item));}
+.gallery-list-item {
+    position: relative;
+    overflow: hidden;
+ 
+    transition: transform var(--anim-fast);
+    transition: box-shadow var(--anim-fast);
+    flex-basis: calc((100% - var(--main-gap) * (var(--portfolio-item) - 1)) / var(--portfolio-item));}
 
 .gallery-list-item:hover,
 .gallery-list-item:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);}
+.gallery-link {
+    display: block;
+    transition: box-shadow var(--anim-fast);
+}
+.gallery-link:hover,
+.gallery-link:focus {
+        position: relative;
+        overflow: hidden;
+        transition: transform var(--anim-fast);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.overley {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 63px 24px;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9);
+    transform: translateY(100%);
+    backdrop-filter: blur(3px);
+        transition: transform var(--anim-fast)
+   
+    
+}
+.gallery-link:hover .overley {
+    overflow: hidden;
+    transform: translatey(0);
+
+}
+.overley-text {
+    
+        font-weight: 400;
+        font-size: 18px;
+        line-height: calc(28/18);
+    
+
+        letter-spacing: 0.03em;
+    
+        color: var(--hero-txt-cl)
+}
+
 .wrapper {
+    
+    
     border: 1px solid #EEEEEE;
     border-top:none ;
     padding-top: 20px;
@@ -396,7 +500,7 @@ margin-bottom: 16px;
     padding-right: 24px;
 }
 .card-title {
-    color: var(--main-txt-cl);
+    color: var(--main-txt-cl)  ;
     font-weight: 700;
         font-size: 18px;
         line-height: calc(36/18);
@@ -433,6 +537,8 @@ margin-bottom: 16px;
     outline: var(--outline);
     color: var(--icon-cl);
 
+    transition: color var(--anim-fast), background-color var(--anim-fast);
+
 
 }
 .socials-link:hover,
@@ -463,6 +569,8 @@ margin-bottom: 16px;
     border: 1px solid rgba(175, 177, 184, 1);
     border-radius: 4px;
     color:var(--icon-cl);
+
+    transition: color var(--anim-fast), border var(--anim-fast);
 
 }
 .client-link:hover,
@@ -495,6 +603,8 @@ margin-bottom: 16px;
     font-size: 14px;
     line-height: calc(16/14);
     letter-spacing: 0.02em;
+
+    transition: color var(--anim-fast);
 
 
 }
@@ -547,6 +657,8 @@ outline: var(--outline);
     outline-offset: var(--outline-offset);
     color: var(--hero-txt-cl);
 
+    transition: color var(--anim-fast), background-color var(--anim-fast) ;
+
 }
 
 .footer-socials-link:hover,
@@ -571,18 +683,62 @@ outline: var(--outline);
 
     top: 0;
     left: 0;
-    display: flex;
+    /*
+   display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
 
     width: 100%;
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    z-index: 1000;
+    
+    transition:  opacity var(--anim-fast), visibility var(--anim-fast);
+}
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    
 }
 .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+        transform: translate(-50%, -50%) scale(1) rotate(0);
         width: 528px;
         height: 581px;
         background-color: var(--other-bg-cl);
+        border-radius: 4px;
+        opacity: 1;
+    transition: transform var(--anim-fast), opacity var(--anim-fast); 
+        
+}
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.3) rotate(1turn);
+    opacity: 0;
+}
+
+.modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+
 }
